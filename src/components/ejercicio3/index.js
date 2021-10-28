@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 const Ejercicio3 = ({ persona, modal, setModal}) => {
-    console.log(persona);
+    
     const [user, setUser] = useState({ first_name: persona.first_name, last_name: persona.last_name, email: persona.email });
     const EditarPorId = async () => {
         const body = {first_name:user.first_name,last_name:user.last_name,email:user.email};
