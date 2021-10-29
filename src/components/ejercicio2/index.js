@@ -5,20 +5,20 @@ import Ejercicio3 from '../ejercicio3'
 
 const Ejercicio2 = () => {
     const [element, setElement] = useState("");
-    const [persona, setPersona] = useState({});
+    const [people, setPeople] = useState({});
     const [modal, setModal]= useState(false);
     
     
-    const buscarPorId = async ()=>{
+    const searchId = async ()=>{
         if(element == ""){
             return
         }
         let response = await axios(`https://reqres.in/api/users/${element}`);
-        setPersona(response.data.data);
-        console.log(persona);
+        setPeople(response.data.data);
+        //console.log(people);
     }
     
-    //console.log(persona);
+    
 
     return (
         
@@ -26,7 +26,7 @@ const Ejercicio2 = () => {
         <div>
             <div>
             <input value={element} onChange={(e)=>setElement(e.target.value)}/>  
-            <Button variant="primary" onClick={() => buscarPorId()}>Search</Button>
+            <Button variant="primary" onClick={() => searchId()}>Search</Button>
             </div>
 
             <div>
@@ -46,11 +46,11 @@ const Ejercicio2 = () => {
                     <tr>
                         
 
-                        {persona && Object.keys(persona).map((ele)=>{
-                           return <td>{persona[ele]}</td>
+                        {people && Object.keys(people).map((ele)=>{
+                           return <td>{people[ele]}</td>
 
                         })}
-                        {persona && persona.id &&<td><Ejercicio3 persona={persona} modal={modal} setModal={setModal}></Ejercicio3></td>}
+                        {people && people.id &&<td><Ejercicio3 people={people} modal={modal} setModal={setModal}></Ejercicio3></td>}
                     </tr>
 
                 </tbody>

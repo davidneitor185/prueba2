@@ -4,12 +4,12 @@ import axios from 'axios';
 
 
 
-const Ejercicio3 = ({ persona, modal, setModal}) => {
+const Ejercicio3 = ({ people, modal, setModal}) => {
     
-    const [user, setUser] = useState({ first_name: persona.first_name, last_name: persona.last_name, email: persona.email });
-    const EditarPorId = async () => {
+    const [user, setUser] = useState({ first_name: people.first_name, last_name: people.last_name, email: people.email });
+    const EditById = async () => {
         const body = {first_name:user.first_name,last_name:user.last_name,email:user.email};
-        let response = await axios.put(`https://reqres.in/api/users/${persona.id}`,
+        let response = await axios.put(`https://reqres.in/api/users/${people.id}`,
             body);
             alert("Se actualizó correctamente");
             console.log(response);
@@ -33,7 +33,7 @@ const Ejercicio3 = ({ persona, modal, setModal}) => {
 
                 <Modal.Footer>
                     <Button variant="secondary"onClick={()=> setModal(!modal)}>Close</Button>
-                    <Button variant="primary" onClick={()=> EditarPorId()}>Save changes</Button>
+                    <Button variant="primary" onClick={()=> EditById()}>Save changes</Button>
                 </Modal.Footer>
             </Modal.Dialog>
             </Modal>

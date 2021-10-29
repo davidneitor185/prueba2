@@ -8,40 +8,35 @@ import Ejercicio2 from './components/ejercicio2/index';
 
 
 function App() {
-  const data = useAxios('/users');
-  const datos = data.data.data;
-  const [idPersona, setIdPersona] = useState("");
-  const [resultado, setResultado] = useState("")
+  const info = useAxios('/users');
+  const data = info.data.data;
+  const [peopleId, setpeopleId] = useState("");
+  const [result, setResult] = useState("")
   
 
-  const buscarId = () => {
+  const searchId = () => {
 
 
-    if (idPersona == "") {
-      setResultado("Realice una busqueda por id")
+    if (peopleId == "") {
+      setResult("Realice una busqueda por id")
     } else {
-      console.log(datos);
-      datos.forEach((d) => {
-        
-        if (d.id == idPersona) {
-          setResultado(d.first_name);
-          return
-        } 
-        
+      //console.log(datos);
+      if( data.find(people => people.id == peopleId) != null){
+        setResult(data.find(people => people.id == peopleId).first_name); 
+      }else{
+        setResult("No hay personas con este Id");
       }
-      
-      )
-
-    }
+                  
+      }          
   }
 
 
   return (
     <div className="App">
       <div>
-        <FormControl value={idPersona} onChange={(e) => setIdPersona(e.target.value)} />
-        <Button onClick={() => buscarId()} variant="primary">Search</Button>
-        <h1>el nombre de este id es:  {resultado? resultado : "no hay usuarios con este id"}</h1>
+        <FormControl value={peopleId} onChange={(e) => setpeopleId(e.target.value)} />
+        <Button onClick={() => searchId()} variant="primary">Search</Button>
+        <h1>el nombre de este id es:  {result? result : "no hay usuarios con este id"}</h1>
       </div>
       <div>
         <Ejercicio2/>
