@@ -11,7 +11,7 @@ function App() {
   const info = useAxios('/users');
   const data = info.data.data;
   const [peopleId, setpeopleId] = useState("");
-  const [result, setResult] = useState("")
+  const [result, setResult] = useState("");
   
 
   const searchId = () => {
@@ -20,9 +20,9 @@ function App() {
     if (peopleId == "") {
       setResult("Realice una busqueda por id")
     } else {
-      //console.log(datos);
-      if( data.find(people => people.id == peopleId) != null){
-        setResult(data.find(people => people.id == peopleId).first_name); 
+      let FPeople = data.find(people => people.id == peopleId);
+      if(  FPeople != null){
+        setResult(FPeople.first_name); 
       }else{
         setResult("No hay personas con este Id");
       }
